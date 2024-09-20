@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Gastos Funcionarios";
+}
+
+<h2>Cálculos do custo de funcionários da empresa</h2>
+<hr />
+<div class="d-flex justify-content-around">
+    <div class="col-5">
+        <form asp-action="Calcular">
+            <div class="form-group">
+                <label for="Nome">Nome do Funcionario</label>
+                <input type="text" class="form-control" id="Nome" name="Nome" value="@Model?.Nome" required placeholder="Nome do Funcionario" maxlength="25" />
+            </div>
+
+            <div class="form-group">
+                <label for="SalarioBase">Salário Base</label>
+                <input type="number" class="form-control" id="SalarioBase" name="SalarioBase" step="1" value="@Model?.SalarioBase" required placeholder="Valor do Sálario Base" />
+            </div>
+
+            <div class="form-group">
+                <label for="Desconto">Descontos</label>
+                <input type="number" class="form-control" id="Desconto" name="Desconto" step="1" value="@Model?.Desconto" required placeholder="Total de Descontos do Salário" />
+            </div>
+
+            <div class="form-group">
+                <label for="Beneficios">Benefícios</label>
+                <input type="number" class="form-control" id="Beneficios" name="Beneficios" step="1" value="@Model?.Beneficios" required placeholder="Total de Benefícios oferecidos aos funcionarios" />
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3 col-12">Calcular gasto</button>
+        </form>
+    </div>
+
+    <div class="col-5">
+        @if (ViewData["CustoFunc"] != null)
+        {
+            <div class="d-flex justify-content-between">
+                <label for="CustoFunc" class="mr-2">
+                    Custo Final do Funcionário:
+                </label>
+                <span> @Model.Nome</span>
+            </div>
+
+            <div>
+                <input type="text" class="form-control" id="CustoFunc" readonly value="@ViewData["CustoFunc"].ToString()" />
+            </div>
+
+        }
+    </div>
+</div>
